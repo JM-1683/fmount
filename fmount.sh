@@ -20,8 +20,8 @@ ID=$(blkid | grep $TO_MOUNT | awk -F'"' '{print $4}')
 FILESYSTEM=$(blkid | grep $TO_MOUNT | awk -F '"' '{print $6}')
 FINAL_ADDITION="UUID="$ID"	"$MOUNT_LOCATION"	"$FILESYSTEM"	defaults 0 0" 
 echo "$FINAL_ADDITION" >> /etc/fstab
-STATUS=$(findmnt --verify)
 
+STATUS=$(findmnt --verify)
 if [[ "$STATUS" != "Success, no errors or warnings detected" ]]; then
 echo -e "\nErrors detected in mount verification.\nUndoing addition to /etc/fstab of:\n"
 echo -e "$FINAL_ADDITION\n"
