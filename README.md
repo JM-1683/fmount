@@ -1,5 +1,5 @@
 # fmount
-## An exceedingly simple bash script for quickly adding disks to /etc/fstab
+### An exceedingly simple bash script for quickly adding disks to /etc/fstab
 
 Usage: `fmount [disk] [mount location]`
 For example: `fmount /dev/sdb1 /whatever/data` will append:
