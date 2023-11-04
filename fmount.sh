@@ -51,7 +51,7 @@ FINAL_ADDITION="UUID=$ID	$MOUNT_LOCATION	$FILESYSTEM	defaults	0	0"
 echo "Adding $FINAL_ADDITION to /etc/fstab. " | sudo tee -a /etc/fstab > /dev/null
 
 # Verify the fstab entries
-if ! sudo findmnt --verify > /dev/null 2>&1; then
+if [[ ! sudo findmnt --verify > /dev/null 2>&1 ]]; then
     echo "Errors detected in mount verification. Undoing addition to /etc/fstab."
     echo "Faulty entry: $FINAL_ADDITION"
     # Using 'tac' to reverse the lines (making the last line first) and 'sed' to delete the first occurrence
@@ -60,7 +60,7 @@ if ! sudo findmnt --verify > /dev/null 2>&1; then
 fi
 
 # Mount the filesystem
-if ! sudo mount "$MOUNT_LOCATION"; then
+if [[ ! sudo mount "$MOUNT_LOCATION" ]] ; then
     echo "Failed to mount $MOUNT_LOCATION. Check /etc/fstab for incorrect entries."
     exit 1
 fi
