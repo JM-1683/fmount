@@ -23,8 +23,8 @@ echo "$FINAL_ADDITION" >> /etc/fstab
 
 STATUS=$(findmnt --verify)
 if [[ "$STATUS" != "Success, no errors or warnings detected" ]]; then
-echo -e "\nErrors detected in mount verification.\nUndoing addition to /etc/fstab of:\n"
-echo -e "$FINAL_ADDITION\n"
-sed -i '$d' /etc/fstab
+	echo -e "\nErrors detected in mount verification.\nUndoing addition to /etc/fstab of:\n"
+	echo -e "$FINAL_ADDITION\n"
+	sed -i '$d' /etc/fstab
 fi
 
